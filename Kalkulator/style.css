@@ -1,66 +1,65 @@
 body {
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(145deg, #1e293b, #334155);
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(145deg, #141e30, #243b55);
     color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    padding: 20px;
 }
 
+/* Calculator Container */
 .calculator {
     width: 100%;
-    max-width: 360px;
-    background: #1f2937;
+    max-width: 400px;
+    background: #1e293b;
     border-radius: 20px;
     padding: 20px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5), inset 0 4px 8px rgba(255, 255, 255, 0.05);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* Tampilan */
+/* Display */
 .display input {
     width: 100%;
     height: 80px;
-    background: #111827;
+    background: #0f172a;
     border: none;
     border-radius: 10px;
     padding: 10px 15px;
     color: #00ffcc;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: bold;
     text-align: right;
-    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Tombol */
+/* Buttons Container */
 .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
+    margin-top: 20px;
 }
 
+/* Buttons */
 button {
     height: 70px;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     border: none;
     border-radius: 15px;
     cursor: pointer;
-    background: #3b4351;
+    transition: all 0.3s ease;
+    background: #334155;
     color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), inset 0 -4px 6px rgba(255, 255, 255, 0.05);
-    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 button:hover {
-    background: #475569;
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
 }
 
 button:active {
@@ -68,17 +67,24 @@ button:active {
     box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.6);
 }
 
-/* Tombol Spesial */
+/* Operator Buttons */
 button.operator {
     background: #64748b;
     color: #ffcc00;
 }
 
+/* Equals Button */
 button.equals {
+    grid-column: span 4; /* Membuat tombol '=' melebar penuh ke 4 kolom */
     background: linear-gradient(145deg, #00ffcc, #00b4a0);
     color: #1f2937;
+    height: 80px; /* Sedikit lebih tinggi untuk menonjol */
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 15px;
 }
 
+/* Zero Button */
 button.zero {
     grid-column: span 2;
 }
@@ -87,7 +93,7 @@ button.zero {
 @media (max-width: 480px) {
     button {
         height: 60px;
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .display input {
