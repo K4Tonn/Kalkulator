@@ -1,28 +1,37 @@
 const resultInput = document.getElementById("result");
 
-// Append numbers or operators to the display
+function formatNumber(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+// Append value to the display
 function append(value) {
-    if (resultInput.value === '0' && value !== '.') {
-        resultInput.value = '';
+    if (resultInput.dataset.rawValue === '0' && value !== '.') {
+        resultInput.dataset.rawValue = '';
     }
-    resultInput.value += value;
+    resultInput.dataset.rawValue += value;
+    resultInput.value = formatNumber(resultInput.dataset.rawValue);
 }
 
 // Clear the display
 function clearResult() {
-    resultInput.value = '';
+    resultInput.dataset.rawValue = '';
+    resultInput.value = '0';
 }
 
 // Delete the last character
 function deleteLast() {
-    resultInput.value = resultInput.value.slice(0, -1);
+    resultInput.dataset.rawValue = resultInput.dataset.rawValue.slice(0, -1) || '0';
+    resultInput.value = formatNumber(resultInput.dataset.rawValue);
 }
 
-// Perform the calculation
+// Perform calculation
 function calculate() {
     try {
-        let expression = resultInput.value.replace(/×/g, '*').replace(/÷/g, '/');
-        resultInput.value = eval(expression) || 0;
+        const rawExpression = resultInput.dataset.rawValue.replace(/×/g, '*').replace(/÷/g, '/');
+        const result = eval(rawExpression) || 0;
+        resultInput.dataset.rawValue = result.toString();
+        resultInput.value = formatNumber(result);
     } catch (e) {
         resultInput.value = 'Error';
     }
